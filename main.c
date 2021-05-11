@@ -1,4 +1,4 @@
- #include <c8051f020.h> 
+#include <c8051f020.h> 
 
 sbit ground = P1^4;
 sbit floor1 = P1^3;
@@ -130,6 +130,7 @@ int main(void){
 					currentFloor++;
 					P2 = lookUpTable[currentFloor];
 					if(floors[currentFloor]){
+						openDoor();
 						floors[currentFloor] = 0;
 					}
 				}
@@ -143,6 +144,7 @@ int main(void){
 					currentFloor--;
 					P2 = lookUpTable[currentFloor];
 					if(floors[currentFloor]){
+						openDoor();
 						floors[currentFloor] = 0;
 					}
 				}
