@@ -14,16 +14,19 @@ int currentFloor = 0;
 unsigned int floors[5] = {0};
 unsigned int lookUpTable[5] = {63,6,91,79,102};
 int i = 0;
+unsigned short timer_count1 = 0;
 
 
 void doorDelay(){
-	int i = 0;
-	int j = 0;
-	for(i=0; i<2000; i++){
-		for(j=0; j<200; j++){
-
-		}
-	}
+	 while (timer_count1 != time) {
+        TMOD |= 0x10;  //16-bit timer0 selected
+        TH1 = 0xF8;   // Loading high byte in TH
+        TL1 = 0xCC;   // Loaded low byte in TL
+        TR1 = 1;      // Running the timer
+        while (!TF1);   //Checking the timer flag register if it is not equal to 1
+        TR1 = 0;      // If TF0=1 stop the timer
+        TF1 = 0;      // Clear the Timer Flag bit for next calculation
+        timer_count1++;
 }
 void motorDelay(){
 	int i =0;
@@ -63,7 +66,7 @@ void getRequest(){
 void openDoor(){
 	led_open = 1;
 	led_closed = 0;
-	doorDelay();
+	doorDelay(2000);
 	led_closed = 1;
 	led_open = 0;
 }
