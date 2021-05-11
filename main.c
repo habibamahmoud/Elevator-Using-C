@@ -15,15 +15,7 @@ unsigned int floors[5] = {0};
 unsigned int lookUpTable[5] = {63,6,91,79,102};
 int i = 0;
 
-void delay() {
-	int i = 0;
-	int j = 0;
-	for (i=0; i<500; i++){
-		for (j=0; j<100; j++){
 
-		}
-	}
-}
 void doorDelay(){
 	int i = 0;
 	int j = 0;
